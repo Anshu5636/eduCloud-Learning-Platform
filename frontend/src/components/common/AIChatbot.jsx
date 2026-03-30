@@ -1,4 +1,4 @@
-// src/components/common/AIChatbot.jsx — HuggingFace powered
+// src/components/common/AIChatbot.jsx — Gemini powered
 import React, { useState, useRef, useEffect } from 'react';
 import { aiAPI } from '../../services/api';
 import { Send, Bot, X, Minimize2, Maximize2, Zap } from 'lucide-react';
@@ -10,7 +10,7 @@ export default function AIChatbot() {
   const [messages,  setMessages]  = useState([
     {
       role: 'assistant',
-      content: '👋 Hi! I\'m **EduBot**, powered by HuggingFace AI (Mistral-7B).\n\nAsk me anything about your courses, programming concepts, algorithms, or any academic topic!',
+      content: '👋 Hi! I\'m **EduBot**, powered by Gemini AI.\n\nAsk me anything about your courses, programming concepts, algorithms, or any academic topic!',
     }
   ]);
   const [input,       setInput]       = useState('');
@@ -44,7 +44,7 @@ export default function AIChatbot() {
     } catch (err) {
       setMessages(prev => [...prev, {
         role: 'assistant',
-        content: '⚠️ Could not reach the AI service. Please check your HUGGINGFACE_API_KEY in backend .env and restart the server.',
+        content: '⚠️ Could not reach the AI service. Please check your GEMINI_API_KEY in backend .env and restart the server.',
       }]);
     } finally {
       setLoading(false);
@@ -71,7 +71,7 @@ export default function AIChatbot() {
         animation: aiAvailable === true ? 'pulse 2s infinite' : 'none',
       }} />
       <span style={{ color: aiAvailable === true ? '#34d399' : aiAvailable === false ? '#fbbf24' : '#64748b' }}>
-        {aiAvailable === true ? 'Mistral-7B Connected' : aiAvailable === false ? 'Demo Mode' : 'Checking...'}
+        {aiAvailable === true ? 'Gemini Connected' : aiAvailable === false ? 'Demo Mode' : 'Checking...'}
       </span>
     </div>
   );
@@ -197,7 +197,7 @@ export default function AIChatbot() {
                           }} />
                         ))}
                         <span style={{ fontSize: '0.72rem', color: '#64748b', marginLeft: '6px' }}>
-                          Mistral thinking...
+                          Gemini thinking...
                         </span>
                       </div>
                     </div>
@@ -221,10 +221,10 @@ export default function AIChatbot() {
                 </div>
               )}
 
-              {/* HuggingFace badge */}
+              {/* Gemini badge */}
               <div style={{ padding: '0 1rem 0.25rem', textAlign: 'center' }}>
                 <span style={{ fontSize: '0.65rem', color: '#334155' }}>
-                  🤗 Powered by HuggingFace · Mistral-7B-Instruct
+                  ✨ Powered by Google Gemini
                 </span>
               </div>
 

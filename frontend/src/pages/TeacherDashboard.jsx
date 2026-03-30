@@ -165,7 +165,7 @@ export default function TeacherDashboard() {
     try {
       const res = await aiAPI.generateQuizText({ content:aiContent, numQuestions:aiNumQ });
       setGeneratedQ(res.data.questions);
-      if (!res.data.aiAvailable) toast('⚠️ Demo questions shown. Add HuggingFace API key for real AI.', { duration:5000 });
+      if (!res.data.aiAvailable) toast('Demo questions shown. Add Gemini API key for real AI.', { duration:5000 });
       else toast.success(`${res.data.questions.length} questions generated!`);
     } catch (err) { toast.error(err.response?.data?.message || 'Failed'); }
     finally { setAiLoading(false); }
@@ -192,7 +192,7 @@ export default function TeacherDashboard() {
     try {
       const res = await aiAPI.summarize({ content:summarizeText });
       setSummary(res.data.summary);
-      if (!res.data.aiAvailable) toast('⚠️ Preview mode — add HuggingFace API key for AI summaries.', { duration:4000 });
+      if (!res.data.aiAvailable) toast('Preview mode — add Gemini API key for AI summaries.', { duration:4000 });
     } catch (err) { toast.error('Failed'); }
     finally { setSummaryLoading(false); }
   };
@@ -280,7 +280,7 @@ export default function TeacherDashboard() {
                     ))}
                   </div>
                   <div>
-                    <SectionHeader title="AI Tools" subtitle={aiAvailable ? '✅ HuggingFace Connected' : '⚠️ Demo mode'} />
+                    <SectionHeader title="AI Tools" subtitle={aiAvailable ? 'Gemini Connected' : 'Demo mode'} />
                     <div style={S.card}>
                       <div style={{ fontWeight:600, marginBottom:'0.75rem' }}>🤖 Quiz Generator</div>
                       <textarea className="input" placeholder="Paste content to generate MCQs..." rows={4} style={{resize:'vertical',marginBottom:'0.6rem'}} value={aiContent} onChange={e=>setAiContent(e.target.value)} />

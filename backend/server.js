@@ -47,7 +47,7 @@ app.use(morgan('dev'));
 app.use('/api/auth',         require('./routes/auth'));
 app.use('/api/users',        require('./routes/users'));
 app.use('/api/courses',      require('./routes/courses'));
-//app.use('/api/assignments',  require('./routes/assignments'));
+app.use('/api/assignments',  require('./routes/assignments'));
 app.use('/api/announcements',require('./routes/announcements'));
 app.use('/api/resources',    require('./routes/resources'));
 app.use('/api/ai',           require('./routes/ai'));
@@ -107,12 +107,12 @@ const PORT = process.env.PORT || 5000;
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => {
-    console.log('✅ MongoDB connected');
+    console.log('MongoDB connected');
     httpServer.listen(PORT, () => {
-      console.log(`🚀 Server running on port ${PORT}`);
+      console.log(`Server running on port ${PORT}`);
     });
   })
   .catch((err) => {
-    console.error('❌ MongoDB connection error:', err.message);
+    console.error('MongoDB connection error:', err.message);
     process.exit(1);
   });

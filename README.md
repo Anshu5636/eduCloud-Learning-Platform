@@ -286,8 +286,8 @@ npm run dev
 
 Expected output:
 ```
-✅ MongoDB connected
-🚀 Server running on port 5000
+MongoDB connected
+Server running on port 5000
 ```
 
 ### Terminal 2 — Frontend
@@ -314,12 +314,12 @@ This creates demo accounts and sample courses in your database.
 
 | Role | Email | Password | ID |
 |------|-------|----------|----|
-| 👨‍🎓 Student | student@demo.com | demo123 | STU0001 |
-| 👨‍🎓 Student 2 | student2@demo.com | demo123 | STU0002 |
-| 👨‍🏫 Teacher | teacher@demo.com | demo123 | TCH0001 |
-| 🛠️ Admin | admin@demo.com | demo123 | ADM0001 |
+| Student | student@demo.com | demo123 | STU0001 |
+| Student 2 | student2@demo.com | demo123 | STU0002 |
+| Teacher | teacher@demo.com | demo123 | TCH0001 |
+| Admin | admin@demo.com | demo123 | ADM0001 |
 
-The login page has **demo buttons** — click Student, Teacher, or Admin to auto-fill credentials.
+The login page has demo buttons — click Student, Teacher, or Admin to auto-fill credentials.
 
 ---
 
@@ -506,9 +506,9 @@ EMAIL_PASS=abcd efgh ijkl mnop
 |---------|---------|
 | Dashboard | Progress overview, streak, avg completion, recent announcements |
 | My Courses | All enrolled courses with teacher name, teacher ID, progress bar |
-| Course Page → 📖 Course | Lesson list — click to open full content (text/PDF/video) |
-| Course Page → 📋 Assignments | View assignments, submit text answers, see grades and feedback |
-| Course Page → 📝 Quizzes | Take quizzes, per-question review with correct answers |
+| Course Page → Course | Lesson list — click to open full content (text/PDF/video) |
+| Course Page → Assignments | View assignments, submit text answers, see grades and feedback |
+| Course Page → Quizzes | Take quizzes, per-question review with correct answers |
 | Discover | Browse all available courses |
 | Announcements | All global and course-specific announcements |
 

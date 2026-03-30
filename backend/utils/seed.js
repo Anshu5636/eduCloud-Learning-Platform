@@ -67,7 +67,7 @@ async function seed() {
     { title:'New Assignment Posted', content:'A Python Exercise has been posted in Python Programming course. Deadline: 7 days.', author:teacher._id, course:courses[0]._id, priority:'medium' },
   ]);
 
-  console.log('\n✅ Demo data seeded!\n');
+  console.log('\nDemo data seeded!\n');
   console.log('student@demo.com  / demo123  (ID: STU0001)');
   console.log('student2@demo.com / demo123  (ID: STU0002)');
   console.log('teacher@demo.com  / demo123  (ID: TCH0001)');
