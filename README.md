@@ -286,8 +286,8 @@ npm run dev
 
 Expected output:
 ```
-MongoDB connected
-Server running on port 5000
+ MongoDB connected
+ Server running on port 5000
 ```
 
 ### Terminal 2 — Frontend
@@ -314,12 +314,12 @@ This creates demo accounts and sample courses in your database.
 
 | Role | Email | Password | ID |
 |------|-------|----------|----|
-| Student | student@demo.com | demo123 | STU0001 |
-| Student 2 | student2@demo.com | demo123 | STU0002 |
-| Teacher | teacher@demo.com | demo123 | TCH0001 |
-| Admin | admin@demo.com | demo123 | ADM0001 |
+|  Student | student@demo.com | demo123 | STU0001 |
+|  Student 2 | student2@demo.com | demo123 | STU0002 |
+|  Teacher | teacher@demo.com | demo123 | TCH0001 |
+|  Admin | admin@demo.com | demo123 | ADM0001 |
 
-The login page has demo buttons — click Student, Teacher, or Admin to auto-fill credentials.
+The login page has **demo buttons** — click Student, Teacher, or Admin to auto-fill credentials.
 
 ---
 
@@ -506,9 +506,9 @@ EMAIL_PASS=abcd efgh ijkl mnop
 |---------|---------|
 | Dashboard | Progress overview, streak, avg completion, recent announcements |
 | My Courses | All enrolled courses with teacher name, teacher ID, progress bar |
-| Course Page → Course | Lesson list — click to open full content (text/PDF/video) |
-| Course Page → Assignments | View assignments, submit text answers, see grades and feedback |
-| Course Page → Quizzes | Take quizzes, per-question review with correct answers |
+| Course Page →  Course | Lesson list — click to open full content (text/PDF/video) |
+| Course Page →  Assignments | View assignments, submit text answers, see grades and feedback |
+| Course Page →  Quizzes | Take quizzes, per-question review with correct answers |
 | Discover | Browse all available courses |
 | Announcements | All global and course-specific announcements |
 
@@ -702,3 +702,132 @@ Open browser DevTools (F12) → Console tab and check for errors. Common causes:
 
 This project is developed for academic purposes at VIT Vellore.  
 Project IDs: 23BCE2079, 23BCE0115, 23BCE0553
+---
+
+## AWS Cloud Architecture (Amazon Hosting)
+
+EduCloud can also be deployed using Amazon Web Services (AWS) to provide a scalable and secure cloud-native hosting environment. The AWS deployment separates networking, application servers, and content delivery layers, ensuring high availability and secure access to backend services.
+
+### High-Level System Architecture
+
+```
+Users (Web Browser)
+        |
+        v
+CloudFront CDN
+        |
+        v
+Amazon S3 (Frontend React Application)
+        |
+        v
+Backend API
+        |
+        v
+Amazon EC2 Instance (Node.js / Express Backend)
+        |
+        v
+MongoDB Atlas Database
+```
+
+CloudFront acts as a Content Delivery Network (CDN) to deliver frontend assets globally with low latency.
+
+### AWS Networking Architecture
+
+The application runs inside a custom Amazon VPC to isolate infrastructure components.
+
+```
+VPC (educloud-vpc)
+|
++-- Public Subnet
+|       |
+|       +-- Bastion EC2 (Secure SSH Access)
+|       |
+|       +-- NAT Gateway
+|
++-- Private Subnet
+        |
+        +-- Backend EC2 (Node.js API Server)
+```
+
+This design separates public-facing resources from internal backend services.
+
+### Secure Administrative Access
+
+To securely manage backend servers, administrative access is provided through a bastion host.
+
+```
+Developer Laptop
+       |
+       v
+Bastion EC2 (Public Subnet)
+       |
+       v
+Backend EC2 (Private Subnet)
+```
+
+This ensures that:
+
+- Backend servers do not expose SSH ports to the internet
+- Administrative access is restricted to a single controlled entry point
+
+### AWS Services Utilized
+
+| AWS Service | Purpose |
+|-------------|---------|
+| Amazon VPC | Provides isolated cloud network |
+| Public Subnet | Hosts bastion instance and NAT gateway |
+| Private Subnet | Hosts backend application servers |
+| Internet Gateway | Allows internet access for public resources |
+| NAT Gateway | Enables outbound internet access for private instances |
+| Amazon EC2 | Runs the backend Node.js application |
+| Amazon S3 | Hosts static frontend files |
+| Amazon CloudFront | Global CDN for fast frontend delivery |
+| AWS IAM | Identity and access management |
+| MongoDB Atlas | Managed cloud database |
+
+### IAM Security Model
+
+AWS Identity and Access Management (IAM) is used to control access to AWS resources.
+
+```
+IAM
+|
++-- IAM User
+|       +-- educloud-admin
+|
++-- IAM Role
+|       +-- educloud-ec2-role
+|
++-- IAM Policy
+        +-- S3 Access Permissions
+```
+
+IAM roles allow the backend server to securely interact with AWS services without storing credentials in the application code.
+
+### Final Cloud Infrastructure Overview
+
+```
+Users
+   |
+   v
+CloudFront CDN
+   |
+   v
+S3 Bucket (Frontend React App)
+   |
+   v
+Backend API
+   |
+   v
+EC2 Instance (Private Subnet)
+   |
+   v
+MongoDB Atlas
+```
+
+This architecture enables EduCloud to achieve:
+
+- Secure backend infrastructure
+- Scalable cloud deployment
+- Global content delivery
+- Separation of frontend and backend services
